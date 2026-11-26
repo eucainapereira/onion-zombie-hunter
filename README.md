@@ -9,6 +9,16 @@
 [![IaC: Terraform](https://img.shields.io/badge/IaC-Terraform%201.5%2B-purple.svg)](https://www.terraform.io/)
 [![FinOps: Scale--to--Zero](https://img.shields.io/badge/FinOps-Scale--to--Zero-success.svg)](https://www.finops.org/)
 
+> [!IMPORTANT]
+> ### 🌐 Demo ao Vivo — Aplicação Provisionada na AWS
+> 
+> A solução completa do **Onion Zombie Hunter** está implantada e operacional na AWS (Região `us-east-2`):
+> 
+> 🔗 **Aplicação Web (S3 Static Website):** [http://onion-zh-frontend-654341980060-us-east-2.s3-website.us-east-2.amazonaws.com](http://onion-zh-frontend-654341980060-us-east-2.s3-website.us-east-2.amazonaws.com)  
+> ⚡ **API Serverless (HTTP API v2 + Lambda):** [`https://qpxbyua2l1.execute-api.us-east-2.amazonaws.com`](https://qpxbyua2l1.execute-api.us-east-2.amazonaws.com)  
+> 
+> *Interface SPA 100% estática consumindo o motor de auditoria FinOps Serverless sob demanda com arquitetura Scale-to-Zero.*
+
 ---
 
 ## 1. Visão Geral
@@ -598,9 +608,9 @@ O módulo Terraform expõe estritamente os três outputs normativos abaixo:
 
 | Nome do Output | Tipo | Exemplo de Valor | Descrição |
 | :--- | :--- | :--- | :--- |
-| `api_url` | `string` | `https://p73sp8ai87.execute-api.us-east-1.amazonaws.com` | URL base do Amazon API Gateway HTTP API v2. |
-| `frontend_url` | `string` | `http://onion-zh-frontend-123456789012-us-east-1.s3-website.us-east-1.amazonaws.com` | URL pública do Amazon S3 Static Website. |
-| `s3_bucket_name` | `string` | `onion-zh-frontend-123456789012-us-east-1` | Nome físico do bucket S3 onde a SPA é implantada. |
+| `api_url` | `string` | `https://qpxbyua2l1.execute-api.us-east-2.amazonaws.com` | URL base do Amazon API Gateway HTTP API v2. |
+| `frontend_url` | `string` | `http://onion-zh-frontend-654341980060-us-east-2.s3-website.us-east-2.amazonaws.com` | URL pública do Amazon S3 Static Website. |
+| `s3_bucket_name` | `string` | `onion-zh-frontend-654341980060-us-east-2` | Nome físico do bucket S3 onde a SPA é implantada. |
 
 ---
 
