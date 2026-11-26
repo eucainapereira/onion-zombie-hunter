@@ -1,0 +1,75 @@
+# ==============================================================================
+# Onion Zombie Hunter — Pipeline CI/CD de Infraestrutura e Frontend
+# Camada 3: Infraestrutura (Terraform) & CI/CD
+# Gatilho manual (workflow_dispatch) para evitar disparo antes da configuração do IAM
+# ==============================================================================
+
+name: Deploy Onion Zombie Hunter
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Provision Infrastructure & Deploy Frontend
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Unit Tests
+        run: |
+          if [ -d "src" ] && [ -n "$(find src -name 'test_*.py' 2>/dev/null)" ]; then
+            python -m unittest discover -s src -p "test_*.py" -v
+          else
+            echo "Nenhum teste unitário encontrado em src/ ainda. Pulando etapa de testes."
+          fi
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.5.7'
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION || 'us-east-1' }}
+
+      - name: Terraform Init & Apply
+        id: terraform
+        run: |
+          cd terraform
+          terraform init
+          terraform apply -auto-approve
+          
+          API_URL=$(terraform output -raw api_url)
+          FRONTEND_URL=$(terraform output -raw frontend_url)
+          BUCKET_NAME=$(terraform output -raw s3_bucket_name)
+          
+          echo "API_URL=$API_URL" >> $GITHUB_ENV
+          echo "FRONTEND_URL=$FRONTEND_URL" >> $GITHUB_ENV
+          echo "BUCKET_NAME=$BUCKET_NAME" >> $GITHUB_ENV
+          cd ..
+
+      - name: Generate Frontend Config
+        run: |
+          echo "window.API_URL = \"$API_URL\";" > web/config.js
+          echo "Generated web/config.js with API_URL=$API_URL"
+
+      - name: Sync Frontend to S3
+        run: |
+          aws s3 sync web/ "s3://$BUCKET_NAME" --delete
+
+      - name: Final Output
+        run: |
+          echo "=== DEPLOY CONCLUÍDO COM SUCESSO ==="
+          echo "API_URL=$API_URL"
+          echo "FRONTEND_URL=$FRONTEND_URL"
