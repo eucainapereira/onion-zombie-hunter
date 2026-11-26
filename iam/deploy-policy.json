@@ -155,6 +155,7 @@
         "iam:TagRole",
         "iam:UntagRole",
         "iam:ListRoleTags",
+        "iam:ListInstanceProfilesForRole",
         "iam:CreatePolicy",
         "iam:GetPolicy",
         "iam:GetPolicyVersion",
