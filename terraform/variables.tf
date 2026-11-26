@@ -6,7 +6,7 @@
 variable "aws_region" {
   description = "Região da AWS para provisionamento dos recursos"
   type        = string
-  default     = "us-east-1"
+  default     = "us-east-2"
 }
 
 variable "project_prefix" {
