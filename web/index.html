@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onion Zombie Hunter — Cloud FinOps Waste Sweeper</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js"></script>
+</head>
+<body>
+  <!-- Cabeçalho Principal -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="logo-group">
+        <span class="logo-icon">🧟‍♂️</span>
+        <div class="logo-text">
+          <h1>Onion Zombie Hunter</h1>
+          <p class="tagline">Cloud FinOps Waste Sweeper • 100% Serverless Scale-to-Zero</p>
+        </div>
+      </div>
+      <div class="nav-badges">
+        <span class="badge badge-finops">⚡ AWS Free Tier</span>
+        <span class="badge badge-zero">US$ 0.00/mês Ocioso</span>
+        <div id="api-status-badge" class="api-badge online">
+          <span class="pulse-dot"></span>
+          <span id="api-status-text">API Conectada</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Seção de Presets Rápidos em 1 Clique -->
+    <section class="section-presets">
+      <div class="section-header">
+        <h2>⚡ Presets Demonstrativos em 1 Clique</h2>
+        <p>Escolha um cenário corporativo realista para auditar instantaneamente ou carregue seu inventário JSON:</p>
+      </div>
+
+      <div class="preset-cards-grid">
+        <button class="preset-card" id="btn-preset-startup" data-preset="startup_waste">
+          <div class="preset-header">
+            <span class="preset-icon">🏢</span>
+            <h3>SaaS Startup Sprawl</h3>
+          </div>
+          <p class="preset-desc">Volumes EBS esquecidos após deploys, EIPs órfãos e um NAT Gateway inativo em VPC de staging.</p>
+          <div class="preset-tags">
+            <span class="ptag">2x EBS</span>
+            <span class="ptag">2x EIP</span>
+            <span class="ptag">1x NAT</span>
+            <span class="ptag">1x Snapshot</span>
+          </div>
+        </button>
+
+        <button class="preset-card" id="btn-preset-enterprise" data-preset="enterprise_sprawl">
+          <div class="preset-header">
+            <span class="preset-icon">🏭</span>
+            <h3>Enterprise FinOps Leak</h3>
+          </div>
+          <p class="preset-desc">Múltiplos ALBs vazios, NAT Gateways ociosos em dev e gigabytes em snapshots órfãos.</p>
+          <div class="preset-tags">
+            <span class="ptag danger">5x EBS</span>
+            <span class="ptag danger">4x EIP</span>
+            <span class="ptag danger">2x NAT</span>
+            <span class="ptag danger">2x ALB</span>
+          </div>
+        </button>
+
+        <button class="preset-card" id="btn-preset-clean" data-preset="clean_slate">
+          <div class="preset-header">
+            <span class="preset-icon">🛡️</span>
+            <h3>Clean Well-Architected</h3>
+          </div>
+          <p class="preset-desc">Conta em total conformidade FinOps sem nenhum recurso zumbi ou desperdício ocioso.</p>
+          <div class="preset-tags">
+            <span class="ptag success">0x Desperdício</span>
+            <span class="ptag success">Score 100</span>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- Editor de Inventário Customizado -->
+    <section class="section-editor">
+      <div class="editor-header">
+        <div class="editor-title">
+          <h3>📝 Editor de Inventário de Recursos AWS (JSON)</h3>
+          <span class="editor-sub">Cole seu payload de inventário ou edite os dados do preset selecionado</span>
+        </div>
+        <div class="editor-actions">
+          <button id="btn-format-json" class="btn-secondary" title="Formatar JSON">Formatar</button>
+          <button id="btn-clear-json" class="btn-secondary" title="Limpar Editor">Limpar</button>
+          <button id="btn-run-scan" class="btn-primary">
+            <span class="btn-icon">🚀</span> Executar Scan FinOps
+          </button>
+        </div>
+      </div>
+
+      <div class="editor-body">
+        <textarea id="inventory-editor" spellcheck="false" placeholder="Cole ou digite seu inventário JSON aqui..."></textarea>
+      </div>
+      <div id="editor-feedback" class="editor-feedback"></div>
+    </section>
+
+    <!-- Seção de Resultados e KPIs -->
+    <section id="results-section" class="section-results">
+      <div class="section-header">
+        <h2>📊 Diagnóstico e Métricas de Impacto FinOps</h2>
+        <span id="scan-meta" class="scan-meta">Scan ID: aguardando execução</span>
+      </div>
+
+      <!-- Cards de Destaque -->
+      <div class="kpi-grid">
+        <!-- Card 1: Health Score -->
+        <div class="kpi-card" id="kpi-score-card">
+          <div class="kpi-title">FinOps Health Score</div>
+          <div class="kpi-value-wrapper">
+            <span id="kpi-score" class="kpi-value">--</span>
+            <span class="kpi-unit">/100</span>
+          </div>
+          <div id="kpi-score-badge" class="score-badge">Não avaliado</div>
+          <div class="score-progress-bar">
+            <div id="score-progress-fill" class="progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Card 2: Economia Mensal -->
+        <div class="kpi-card">
+          <div class="kpi-title">Desperdício Mensal Projetado</div>
+          <div class="kpi-value-wrapper">
+            <span class="kpi-currency">US$</span>
+            <span id="kpi-monthly" class="kpi-value text-danger">0.00</span>
+          </div>
+          <div class="kpi-sub">Economia imediata ao remediar</div>
+        </div>
+
+        <!-- Card 3: Economia Anual -->
+        <div class="kpi-card">
+          <div class="kpi-title">Desperdício Anual Projetado</div>
+          <div class="kpi-value-wrapper">
+            <span class="kpi-currency">US$</span>
+            <span id="kpi-annual" class="kpi-value text-danger">0.00</span>
+          </div>
+          <div class="kpi-sub">Projeção orçamentária para 12 meses</div>
+        </div>
+
+        <!-- Card 4: Zumbis Encontrados -->
+        <div class="kpi-card">
+          <div class="kpi-title">Total de Recursos Zumbis</div>
+          <div class="kpi-value-wrapper">
+            <span id="kpi-zombies" class="kpi-value text-warning">0</span>
+            <span class="kpi-unit" id="kpi-total-scanned">/ 0 auditados</span>
+          </div>
+          <div class="severity-mini-bar" id="severity-mini-breakdown">
+            <span class="sev-tag critical">0 Críticos</span>
+            <span class="sev-tag high">0 Altos</span>
+            <span class="sev-tag medium">0 Médios</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detalhamento por Categoria de Custo -->
+      <div class="category-breakdown-card">
+        <h4>💰 Rombo Financeiro Mensal por Categoria AWS</h4>
+        <div class="categories-grid">
+          <div class="cat-pill">
+            <span class="cat-name">EBS Volumes</span>
+            <span id="cat-ebs" class="cat-val">US$ 0.00</span>
+          </div>
+          <div class="cat-pill">
+            <span class="cat-name">Elastic IPs</span>
+            <span id="cat-eip" class="cat-val">US$ 0.00</span>
+          </div>
+          <div class="cat-pill">
+            <span class="cat-name">NAT Gateways</span>
+            <span id="cat-nat" class="cat-val">US$ 0.00</span>
+          </div>
+          <div class="cat-pill">
+            <span class="cat-name">Snapshots</span>
+            <span id="cat-snapshot" class="cat-val">US$ 0.00</span>
+          </div>
+          <div class="cat-pill">
+            <span class="cat-name">Load Balancers</span>
+            <span id="cat-alb" class="cat-val">US$ 0.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela de Achados Detalhados -->
+      <div class="findings-container">
+        <div class="findings-header">
+          <h3>🔍 Achados Detalhados de Auditoria</h3>
+          <span id="findings-count-badge" class="badge">0 achados</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="findings-table">
+            <thead>
+              <tr>
+                <th>Regra</th>
+                <th>Severidade</th>
+                <th>Recurso</th>
+                <th>Título e Diagnóstico</th>
+                <th>Custo Mensal</th>
+                <th>Ação Recomendada</th>
+              </tr>
+            </thead>
+            <tbody id="findings-tbody">
+              <tr>
+                <td colspan="6" class="text-center text-muted">
+                  Nenhuma varredura executada. Clique em um dos presets acima ou em "Executar Scan FinOps".
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Visualizador de Scripts de Remediação -->
+      <div class="remediation-container">
+        <div class="remediation-header">
+          <div class="remediation-title">
+            <h3>🛠️ Planos de Remediação Automatizados</h3>
+            <span class="remediation-safeguard-badge">🛡️ Salvaguarda Ativa: Snapshots Prévios para EBS</span>
+          </div>
+          <div class="tab-controls">
+            <button id="tab-cli" class="tab-btn active">AWS CLI Script</button>
+            <button id="tab-tf" class="tab-btn">Terraform HCL</button>
+            <button id="btn-copy-script" class="btn-copy">📋 Copiar Script</button>
+          </div>
+        </div>
+
+        <div class="code-viewer-wrapper">
+          <pre><code id="script-code-display"># Selecione uma varredura para visualizar os scripts de remediação.</code></pre>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p><strong>Onion Zombie Hunter</strong> — Solução 100% Serverless sob a camada perpétua do AWS Free Tier.</p>
+      <p class="footer-sub">Desenvolvido com padrão Onion Flow • Governança FinOps Foundation • Licença MIT</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
