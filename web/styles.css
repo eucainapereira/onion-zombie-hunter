@@ -1,10 +1,14 @@
-@import "tokens.css";
-
 /* ==============================================================================
    ONION ZOMBIE HUNTER — FINANCIAL TELEMETRY DARK STYLESHEET
-   Layer 3: Design Tokens, Symmetric Grid & Structural Alignment
+   Layer 4: Typography, Component Craftsmanship & Mobile-First Responsiveness
    Architecture: Zero-Build Modern CSS3 / 100% S3+CloudFront Static Compatible
+   Safe System Font Fallbacks: -apple-system, sans-serif, monospace
    ============================================================================== */
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
 
 html {
   box-sizing: border-box;
@@ -30,6 +34,31 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   max-width: 100vw;
+}
+
+/* ==============================================================================
+   UNIVERSAL ACCESSIBILITY, FOCUS-VISIBLE & MICRO-INTERACTIONS
+   ============================================================================== */
+:focus-visible {
+  outline: 2px solid var(--accent-finops-cyan);
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-finops-cyan);
+  outline-offset: 2px;
+}
+
+button:active,
+.preset-card:active,
+.tab-btn:active,
+.btn-primary:active,
+.btn-secondary:active,
+.btn-copy:active {
+  transform: scale(0.98);
 }
 
 /* ==============================================================================
@@ -75,6 +104,18 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+  .nav-badges {
+    justify-content: space-between;
+    width: 100%;
+  }
 }
 
 .logo-group {
@@ -216,7 +257,7 @@ body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .preset-cards-grid {
     grid-template-columns: 1fr;
   }
@@ -346,6 +387,19 @@ body {
   gap: var(--space-2);
 }
 
+@media (max-width: 480px) {
+  .editor-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .editor-actions .btn-primary,
+  .editor-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    min-height: 42px;
+  }
+}
+
 /* Buttons (Linear Dark Style) */
 .btn-primary, .btn-secondary, .btn-copy {
   padding: var(--space-2) var(--space-4);
@@ -449,7 +503,7 @@ body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .kpi-grid {
     grid-template-columns: 1fr;
   }
@@ -630,6 +684,12 @@ body {
   }
 }
 
+@media (max-width: 480px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .cat-pill {
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -685,6 +745,21 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   width: 100%;
+  scrollbar-width: thin;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: transparent;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
 }
 
 .findings-table {
@@ -696,9 +771,12 @@ body {
 
 .findings-table th {
   background-color: var(--bg-card);
-  color: var(--text-muted);
+  color: var(--text-secondary);
   padding: var(--space-3) var(--space-4);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   border-bottom: 1px solid var(--border-subtle);
   white-space: nowrap;
 }
@@ -709,8 +787,14 @@ body {
   vertical-align: middle;
 }
 
+.findings-table td.text-center {
+  padding: var(--space-8) var(--space-4);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 .findings-table tr:hover {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 .badge-sev {
