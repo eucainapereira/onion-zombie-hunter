@@ -1,6 +1,6 @@
 /* ==============================================================================
-   ONION ZOMBIE HUNTER — FINANCIAL TELEMETRY DARK STYLESHEET
-   Layer 4: Typography, Component Craftsmanship & Mobile-First Responsiveness
+   ONION ZOMBIE HUNTER — FINANCIAL TELEMETRY DARK NEUMORPHIC STYLESHEET
+   Theme: Soft UI Dark Neumorphism on Monochromatic Continuous Slate (#1e222a)
    Architecture: Zero-Build Modern CSS3 / 100% S3+CloudFront Static Compatible
    Safe System Font Fallbacks: -apple-system, sans-serif, monospace
    ============================================================================== */
@@ -40,7 +40,7 @@ body {
    UNIVERSAL ACCESSIBILITY, FOCUS-VISIBLE & MICRO-INTERACTIONS
    ============================================================================== */
 :focus-visible {
-  outline: 2px solid var(--accent-finops-cyan);
+  outline: 2px solid var(--accent-waste-amber);
   outline-offset: 2px;
 }
 
@@ -48,17 +48,29 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--accent-finops-cyan);
+  outline: 2px solid var(--accent-waste-amber);
   outline-offset: 2px;
 }
 
 button:active,
+button[aria-pressed="true"],
+button.active,
 .preset-card:active,
+.preset-card[aria-pressed="true"],
+.preset-card.active,
 .tab-btn:active,
 .btn-primary:active,
 .btn-secondary:active,
-.btn-copy:active {
+.btn-copy:active,
+.btn-primary[aria-pressed="true"],
+.btn-secondary[aria-pressed="true"],
+.btn-copy[aria-pressed="true"],
+.btn-primary.active,
+.btn-secondary.active,
+.btn-copy.active {
   transform: scale(0.98);
+  box-shadow: var(--neu-pressed) !important;
+  background-color: var(--bg-neu-pressed);
 }
 
 /* ==============================================================================
@@ -67,7 +79,7 @@ button:active,
 .nav-container,
 .container,
 .footer-container {
-  max-width: 1360px;
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
   padding-left: var(--space-6);
@@ -84,18 +96,16 @@ button:active,
 }
 
 /* ==============================================================================
-   HEADER & NAVBAR
+   HEADER & NAVBAR (NEUMORPHIC RAISED WITH RIM-LIGHT)
    ============================================================================== */
 .navbar {
-  background-color: rgba(13, 18, 28, 0.85);
-  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--bg-neu-base);
+  border-bottom: var(--neu-border-hairline);
   padding: var(--space-3) 0;
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), inset 0 1px 0 var(--neu-rim);
 }
 
 .nav-container {
@@ -127,7 +137,7 @@ button:active,
 .logo-icon {
   font-size: 2.2rem;
   line-height: 1;
-  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.35));
+  filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.35));
 }
 
 .logo-text h1 {
@@ -159,15 +169,17 @@ button:active,
 }
 
 .badge-finops {
-  background-color: rgba(6, 182, 212, 0.12);
+  background-color: var(--bg-neu-sunken);
   color: var(--accent-finops-cyan);
-  border-color: rgba(6, 182, 212, 0.3);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  box-shadow: var(--neu-inset);
 }
 
 .badge-zero {
-  background-color: var(--accent-savings-bg);
+  background-color: var(--bg-neu-sunken);
   color: var(--accent-savings-text);
-  border-color: rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: var(--neu-inset);
 }
 
 .api-badge {
@@ -177,15 +189,15 @@ button:active,
   font-size: 0.75rem;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
-  background-color: var(--accent-savings-bg);
+  background-color: var(--bg-neu-sunken);
   color: var(--accent-savings-text);
   border: 1px solid rgba(16, 185, 129, 0.3);
   font-weight: 600;
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-inset);
 }
 
 .api-badge.offline {
-  background-color: var(--accent-critical-bg);
+  background-color: var(--bg-neu-sunken);
   color: #f87171;
   border-color: rgba(244, 63, 94, 0.3);
 }
@@ -238,7 +250,7 @@ button:active,
 }
 
 /* ==============================================================================
-   PRESETS GRID (1-CLIQUE DEMONSTRATIVO)
+   PRESETS GRID (CARDS VOLUMÉTRICOS ESCULPIDOS EM RELEVO EXTRUDADO)
    ============================================================================== */
 .section-presets {
   margin-bottom: var(--space-8);
@@ -247,50 +259,53 @@ button:active,
 .preset-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-6);
   align-items: stretch;
 }
 
 @media (max-width: 960px) {
   .preset-cards-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-5);
   }
 }
 
 @media (max-width: 480px) {
   .preset-cards-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 }
 
 .preset-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-neu-base);
+  border: var(--neu-border-hairline);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   text-align: left;
   cursor: pointer;
-  transition: all var(--transition-snappy);
+  transition: var(--neu-transition);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-3);
   height: 100%;
   min-height: 180px;
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded);
 }
 
 .preset-card:hover {
-  background: var(--bg-card-hover);
-  border-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--bg-neu-elevated);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-rim), var(--shadow-md);
+  box-shadow: var(--neu-elevated-hover);
 }
 
-.preset-card.active {
-  border-color: var(--accent-finops-cyan);
-  box-shadow: var(--shadow-rim), 0 0 16px rgba(6, 182, 212, 0.3);
-  background: var(--bg-card-active);
+.preset-card.active,
+.preset-card[aria-pressed="true"] {
+  border-color: var(--accent-waste-amber);
+  box-shadow: var(--neu-pressed), 0 0 14px rgba(245, 158, 11, 0.25);
+  background-color: var(--bg-neu-pressed);
+  transform: scale(0.99);
 }
 
 .preset-header {
@@ -331,34 +346,37 @@ button:active,
   font-variant-numeric: tabular-nums;
   padding: var(--space-1) var(--space-2);
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-neu-sunken);
   color: var(--text-secondary);
   font-weight: 500;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--neu-border-dark);
+  box-shadow: var(--neu-inset);
 }
 
 .ptag.danger {
   background-color: var(--accent-critical-bg);
   color: #fca5a5;
   border-color: rgba(244, 63, 94, 0.3);
+  box-shadow: var(--neu-inset);
 }
 
 .ptag.success {
   background-color: var(--accent-savings-bg);
   color: #6ee7b7;
   border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: var(--neu-inset);
 }
 
 /* ==============================================================================
-   EDITOR DE INVENTÁRIO (JSON)
+   EDITOR DE INVENTÁRIO (JSON EM CAVIDADE DE EDIÇÃO REENTRANTE)
    ============================================================================== */
 .section-editor {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-neu-base);
+  border: var(--neu-border-hairline);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   margin-bottom: var(--space-8);
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded);
 }
 
 .editor-header {
@@ -400,53 +418,54 @@ button:active,
   }
 }
 
-/* Buttons (Linear Dark Style) */
+/* Buttons (Tactile Convex & Elevated Buttons) */
 .btn-primary, .btn-secondary, .btn-copy {
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all var(--transition-snappy);
-  border: 1px solid transparent;
+  transition: var(--neu-transition);
+  border: var(--neu-border-hairline);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded-sm);
 }
 
 .btn-primary:active, .btn-secondary:active, .btn-copy:active {
   transform: scale(0.98);
+  box-shadow: var(--neu-pressed);
 }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-finops-cyan), #0284c7);
   color: #fff;
-  box-shadow: var(--shadow-rim), 0 2px 10px rgba(6, 182, 212, 0.35);
+  box-shadow: var(--neu-extruded-sm), 0 2px 10px rgba(6, 182, 212, 0.35);
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #0891b2, #0369a1);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-rim), 0 4px 14px rgba(6, 182, 212, 0.5);
+  transform: translateY(-2px);
+  box-shadow: var(--neu-elevated-hover), 0 4px 16px rgba(6, 182, 212, 0.5);
 }
 
 .btn-secondary {
-  background-color: var(--bg-elevated);
+  background: linear-gradient(145deg, #242933, #1a1e25);
   color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
 }
 
 .btn-secondary:hover {
-  background-color: var(--bg-card-hover);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(145deg, #282e3a, #1d222b);
+  transform: translateY(-2px);
+  box-shadow: var(--neu-elevated-hover);
 }
 
 .editor-body textarea {
   width: 100%;
   height: 190px;
-  background-color: var(--bg-code);
-  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-neu-sunken);
+  border: 1px solid var(--neu-border-dark);
   border-radius: var(--radius-sm);
   padding: var(--space-4);
   color: #38bdf8;
@@ -454,13 +473,13 @@ button:active,
   font-size: 0.85rem;
   line-height: 1.5;
   resize: vertical;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--neu-inset);
 }
 
 .editor-body textarea:focus {
   outline: none;
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25);
+  box-shadow: var(--neu-inset), 0 0 0 2px rgba(245, 158, 11, 0.25);
 }
 
 .editor-feedback {
@@ -475,7 +494,7 @@ button:active,
 }
 
 /* ==============================================================================
-   SEÇÃO DE RESULTADOS & MATRIZ SIMÉTRICA DE KPIS (4 CARDS)
+   SEÇÃO DE RESULTADOS & MATRIZ SIMÉTRICA DE KPIS (4 PLATÔS EXTRUDADOS)
    ============================================================================== */
 .section-results {
   margin-bottom: var(--space-8);
@@ -488,11 +507,11 @@ button:active,
   font-variant-numeric: tabular-nums;
 }
 
-/* Matriz 4x1 Perfeitamente Simétrica */
+/* Matriz 4x1 Perfeitamente Simétrica com Gap 24px */
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-6);
   align-items: stretch;
   margin-bottom: var(--space-6);
 }
@@ -500,34 +519,36 @@ button:active,
 @media (max-width: 1024px) {
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
   }
 }
 
 @media (max-width: 480px) {
   .kpi-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 }
 
 .kpi-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: var(--space-4) var(--space-5);
+  background-color: var(--bg-neu-base);
+  border: var(--neu-border-hairline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   min-height: 160px;
-  transition: transform var(--transition-snappy), border-color var(--transition-snappy);
+  transition: var(--neu-transition);
 }
 
 .kpi-card:hover {
-  transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateY(-2px);
+  box-shadow: var(--neu-elevated-hover);
 }
 
 .kpi-title {
@@ -587,9 +608,11 @@ button:active,
   font-weight: 700;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: var(--bg-neu-sunken);
   color: var(--text-muted);
   margin-bottom: var(--space-2);
+  border: 1px solid var(--neu-border-dark);
+  box-shadow: var(--neu-inset);
 }
 
 .score-badge.excellent {
@@ -613,11 +636,13 @@ button:active,
 }
 
 .score-progress-bar {
-  height: 6px;
-  background-color: rgba(255, 255, 255, 0.08);
+  height: 8px;
+  background-color: var(--bg-neu-sunken);
+  border: 1px solid var(--neu-border-dark);
   border-radius: var(--radius-full);
   overflow: hidden;
   margin-top: auto;
+  box-shadow: var(--neu-inset);
 }
 
 .progress-fill {
@@ -639,6 +664,7 @@ button:active,
   font-weight: 600;
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
+  box-shadow: var(--neu-inset);
 }
 
 .sev-tag.critical { background: var(--accent-critical-bg); color: #fca5a5; }
@@ -649,12 +675,12 @@ button:active,
    DETALHAMENTO POR CATEGORIA DE CUSTO (5 COLUNAS SIMÉTRICAS)
    ============================================================================== */
 .category-breakdown-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-neu-base);
+  border: var(--neu-border-hairline);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   margin-bottom: var(--space-6);
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded);
 }
 
 .category-breakdown-card h4 {
@@ -691,14 +717,14 @@ button:active,
 }
 
 .cat-pill {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-neu-base);
+  border: var(--neu-border-hairline);
   border-radius: var(--radius-sm);
   padding: var(--space-3) var(--space-4);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded-sm);
   height: 100%;
 }
 
@@ -716,15 +742,15 @@ button:active,
 }
 
 /* ==============================================================================
-   TABELA DE ACHADOS DETALHADOS
+   TABELA DE ACHADOS DETALHADOS (CARD EXTRUDADO TÁTIL)
    ============================================================================== */
 .findings-container {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-neu-base);
+  border: var(--neu-border-hairline);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   margin-bottom: var(--space-6);
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded);
 }
 
 .findings-header {
@@ -746,13 +772,17 @@ button:active,
   -webkit-overflow-scrolling: touch;
   width: 100%;
   scrollbar-width: thin;
+  background-color: var(--bg-neu-sunken);
+  box-shadow: var(--neu-inset);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neu-border-dark);
 }
 
 .table-responsive::-webkit-scrollbar {
   height: 6px;
 }
 .table-responsive::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--bg-neu-sunken);
 }
 .table-responsive::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.12);
@@ -770,20 +800,20 @@ button:active,
 }
 
 .findings-table th {
-  background-color: var(--bg-card);
+  background-color: var(--bg-neu-elevated);
   color: var(--text-secondary);
   padding: var(--space-3) var(--space-4);
   font-weight: 700;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--neu-border-dark);
   white-space: nowrap;
 }
 
 .findings-table td {
   padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--neu-border-dark);
   vertical-align: middle;
 }
 
@@ -794,7 +824,7 @@ button:active,
 }
 
 .findings-table tr:hover {
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 .badge-sev {
@@ -805,6 +835,7 @@ button:active,
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  box-shadow: var(--neu-extruded-sm);
 }
 
 .badge-sev.critical {
@@ -830,9 +861,11 @@ button:active,
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--accent-finops-cyan);
-  background-color: rgba(6, 182, 212, 0.1);
+  background-color: var(--bg-neu-sunken);
   padding: var(--space-1) var(--space-2);
   border-radius: 4px;
+  border: 1px solid var(--neu-border-dark);
+  box-shadow: var(--neu-inset);
 }
 
 .res-id {
@@ -868,14 +901,14 @@ button:active,
 }
 
 /* ==============================================================================
-   VISUALIZADOR DE SCRIPTS DE REMEDIAÇÃO
+   VISUALIZADOR DE SCRIPTS DE REMEDIAÇÃO (CAVIDADE REENTRANTE SUNKEN)
    ============================================================================== */
 .remediation-container {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+  background-color: var(--bg-neu-base);
+  border: var(--neu-border-hairline);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
-  box-shadow: var(--shadow-rim);
+  box-shadow: var(--neu-extruded);
 }
 
 .remediation-header {
@@ -898,11 +931,12 @@ button:active,
 .remediation-safeguard-badge {
   font-size: 0.75rem;
   color: #34d399;
-  background-color: var(--accent-savings-bg);
+  background-color: var(--bg-neu-sunken);
   border: 1px solid rgba(16, 185, 129, 0.3);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-full);
   display: inline-block;
+  box-shadow: var(--neu-inset);
 }
 
 .tab-controls {
@@ -911,48 +945,51 @@ button:active,
 }
 
 .tab-btn {
-  background-color: var(--bg-card);
+  background: linear-gradient(145deg, #242933, #1a1e25);
   color: var(--text-muted);
-  border: 1px solid var(--border-subtle);
+  border: var(--neu-border-hairline);
   padding: var(--space-2) var(--space-4);
   font-size: 0.8rem;
   font-weight: 600;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  box-shadow: var(--shadow-rim);
-  transition: all var(--transition-snappy);
+  box-shadow: var(--neu-extruded-sm);
+  transition: var(--neu-transition);
 }
 
 .tab-btn:hover {
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: var(--neu-elevated-hover);
 }
 
 .tab-btn.active {
-  background-color: var(--accent-finops-cyan);
+  background: linear-gradient(135deg, var(--accent-finops-cyan), #0284c7);
   color: #fff;
   border-color: var(--accent-finops-cyan);
 }
 
 .btn-copy {
-  background-color: var(--bg-elevated);
+  background: linear-gradient(145deg, #242933, #1a1e25);
   color: #fff;
-  border: 1px solid var(--border-subtle);
+  border: var(--neu-border-hairline);
+  box-shadow: var(--neu-extruded-sm);
 }
 
 .btn-copy:hover {
-  background-color: var(--bg-card-hover);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(145deg, #282e3a, #1d222b);
+  transform: translateY(-2px);
+  box-shadow: var(--neu-elevated-hover);
 }
 
 .code-viewer-wrapper {
-  background-color: var(--bg-code);
-  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-neu-sunken);
+  border: 1px solid var(--neu-border-dark);
   border-radius: var(--radius-sm);
   padding: var(--space-4);
   max-height: 400px;
   overflow-y: auto;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--neu-inset);
 }
 
 .code-viewer-wrapper pre {
@@ -969,16 +1006,17 @@ button:active,
 }
 
 /* ==============================================================================
-   FOOTER
+   FOOTER (CONTINUOUS BASE)
    ============================================================================== */
 .footer {
-  background-color: #05070a;
-  border-top: 1px solid var(--border-subtle);
+  background-color: var(--bg-neu-base);
+  border-top: var(--neu-border-hairline);
   padding: var(--space-6) 0;
   margin-top: auto;
   text-align: center;
   font-size: 0.85rem;
   color: var(--text-muted);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .footer-sub {

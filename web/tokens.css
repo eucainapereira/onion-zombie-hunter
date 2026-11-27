@@ -1,57 +1,113 @@
 /* ==============================================================================
    ONION ZOMBIE HUNTER — DESIGN TOKENS
-   Theme: Financial Telemetry Dark (FinOps e Governança Financeira)
-   Architecture: Pure Vanilla CSS3 Custom Properties
+   Theme: Financial Telemetry Dark Neumorphism (Soft UI Tátil)
+   Architecture: Pure Vanilla CSS3 Custom Properties (Zero-Build Standard)
+   Monochrome Continuous Surface: #1e222a
+   WCAG AA Contrast Compliant: Text contrast >= 4.5:1 against base surface
    ============================================================================== */
 
 :root {
-  /* --- Surfaces & Canvas --- */
-  --bg-canvas: #07090e;
-  --bg-surface: #0d121c;
-  --bg-elevated: #141b29;
-  --bg-card: #121824;
-  --bg-card-hover: #182030;
-  --bg-card-active: #1f2a3f;
-  --bg-code: #05070a;
-  --bg-input: #080b12;
+  /* --- Surfaces & Monochromatic Neumorphic Base (#1e222a) --- */
+  --bg-neu-base: #1e222a;
+  --bg-neu-elevated: #222730;
+  --bg-neu-pressed: #181b22;
+  --bg-neu-sunken: #181b22;
 
-  /* --- Borders --- */
-  --border-subtle: rgba(255, 255, 255, 0.08);
+  /* Aliases for Blueprint Spec */
+  --neu-base: var(--bg-neu-base);
+  --neu-base-elevated: var(--bg-neu-elevated);
+  --neu-base-sunken: var(--bg-neu-sunken);
+
+  /* Continuous Canvas & Surfaces */
+  --bg-canvas: var(--bg-neu-base);
+  --bg-surface: var(--bg-neu-base);
+  --bg-elevated: var(--bg-neu-elevated);
+  --bg-card: var(--bg-neu-base);
+  --bg-card-hover: var(--bg-neu-elevated);
+  --bg-card-active: var(--bg-neu-pressed);
+  --bg-code: var(--bg-neu-sunken);
+  --bg-input: var(--bg-neu-sunken);
+
+  /* --- Neumorphic Light & Shadow Physics (Top-Left Angle) --- */
+  --neu-light: rgba(255, 255, 255, 0.045);
+  --neu-light-subtle: rgba(255, 255, 255, 0.025);
+  --neu-light-elevated: rgba(255, 255, 255, 0.07);
+  --neu-dark: rgba(0, 0, 0, 0.65);
+  --neu-dark-elevated: rgba(0, 0, 0, 0.8);
+  --neu-rim: rgba(255, 255, 255, 0.08);
+  --neu-rim-elevated: rgba(255, 255, 255, 0.12);
+
+  /* Hairline Borders */
+  --neu-border-hairline: 1px solid rgba(255, 255, 255, 0.04);
+  --neu-border-light: rgba(255, 255, 255, 0.08);
+  --neu-border-dark: rgba(0, 0, 0, 0.45);
+  --border-subtle: rgba(255, 255, 255, 0.05);
   --border-strong: rgba(245, 158, 11, 0.35);
   --border-focus: rgba(245, 158, 11, 0.5);
-  --border-bright: rgba(255, 255, 255, 0.16);
+  --border-bright: rgba(255, 255, 255, 0.12);
 
-  /* --- Typography --- */
-  --text-primary: #f1f5f9;
-  --text-secondary: #94a3b8;
-  --text-muted: #94a3b8;
-  --text-dim: #8092a8;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* --- Ready-to-Use Neumorphic Elevations (Desktop Default > 1280px) --- */
+  --neu-extruded: -6px -6px 14px var(--neu-light), 6px 6px 14px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+  --neu-extruded-sm: -4px -4px 10px var(--neu-light), 4px 4px 10px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+  --neu-inset: inset 4px 4px 10px var(--neu-dark), inset -4px -4px 10px var(--neu-light-subtle), inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  --neu-pressed: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light-subtle);
+  --neu-elevated-hover: -8px -8px 20px var(--neu-light-elevated), 8px 8px 20px var(--neu-dark-elevated), inset 0 1px 0 var(--neu-rim-elevated);
+
+  /* Shadow Presets Aliases */
+  --shadow-neu-extruded: var(--neu-extruded);
+  --shadow-neu-elevated: var(--neu-elevated-hover);
+  --shadow-neu-sunken: var(--neu-inset);
+  --shadow-neu-button: var(--neu-extruded-sm);
+  --shadow-neu-button-active: var(--neu-pressed);
+  --shadow-rim: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 1px 0 var(--neu-rim);
+  --shadow-sm: var(--neu-extruded-sm);
+  --shadow-md: var(--neu-extruded);
+  --shadow-lg: var(--neu-elevated-hover);
+
+  /* --- Typography & System Fallbacks (WCAG AA Certified) --- */
+  /* Base background #1e222a has relative luminance 0.0158. Minimum 4.5:1 ratio required */
+  --text-primary: #f8fafc;    /* Contrast 15.2:1 (AAA) */
+  --text-secondary: #cbd5e1;  /* Contrast 10.5:1 (AAA) */
+  --text-muted: #94a3b8;      /* Contrast 6.23:1 (AA > 4.5:1) */
+  --text-dim: #94a3b8;        /* Contrast 6.23:1 (Calibrated from slate-500 to guarantee >= 4.5:1) */
+
+  /* Font Families with Modern Clean Web Safe Fallbacks */
+  --font-sans: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-  /* --- Typography Rhythm & Letter Spacing --- */
+  /* Typography Rhythm & Letter Spacing */
   --tracking-tighter: -0.04em;
   --tracking-tight: -0.02em;
   --tracking-normal: 0em;
   --tracking-wide: 0.05em;
   --tracking-wider: 0.08em;
 
-  /* --- Theme Accents (Financial Telemetry) --- */
+  /* --- Contextual Accents (Financial Telemetry & FinOps) --- */
+  --accent-primary: #f59e0b;
+  --accent-glow: rgba(245, 158, 11, 0.25);
+
   --accent-savings-emerald: #10b981;
-  --accent-savings-text: #34d399;
+  --accent-savings-text: #34d399; /* Contrast 8.4:1 */
   --accent-savings-bg: rgba(16, 185, 129, 0.12);
   --accent-savings-glow: rgba(16, 185, 129, 0.3);
 
   --accent-waste-amber: #f59e0b;
-  --accent-waste-gold: #fbbf24;
+  --accent-waste-gold: #fbbf24;   /* Contrast 9.8:1 */
   --accent-waste-bg: rgba(245, 158, 11, 0.12);
   --accent-waste-glow: rgba(245, 158, 11, 0.3);
 
   --accent-critical-rose: #f43f5e;
   --accent-critical-bg: rgba(244, 63, 94, 0.12);
+  --accent-critical-text: #fb7185; /* Contrast 5.6:1 (WCAG AA > 4.5:1) */
 
   --accent-finops-cyan: #06b6d4;
   --accent-finops-cyan-glow: rgba(6, 182, 212, 0.25);
+
+  /* High-Contrast Accessible Text Accents */
+  --text-contrast-cyan: #22d3ee;     /* Contrast 9.5:1 */
+  --text-contrast-emerald: #34d399;  /* Contrast 8.4:1 */
+  --text-contrast-amber: #fbbf24;    /* Contrast 9.8:1 */
+  --text-contrast-rose: #fb7185;     /* Contrast 5.6:1 */
 
   /* --- Spacing Scale (8px Grid Multiples) --- */
   --space-1: 4px;   /* 0.5x unit */
@@ -65,23 +121,18 @@
   --space-12: 48px; /* 6x unit */
   --space-16: 64px; /* 8x unit */
 
-  /* --- Border Radii --- */
+  /* --- Border Radii (Smooth Tactile Curves: 16px - 20px for Panels) --- */
   --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 20px;
   --radius-full: 9999px;
 
-  /* --- Lighting, Depth & Rim-Light --- */
-  --shadow-rim: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
-
-  /* --- Snappy Motion & Transitions --- */
-  --transition-snappy: 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* --- Motion & Tactile Transitions (180ms Snappy Curve) --- */
+  --transition-snappy: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  --neu-transition: all var(--transition-snappy);
 
   /* --- Backward Compatibility Aliases --- */
   --bg-primary: var(--bg-canvas);
@@ -96,4 +147,38 @@
   --color-critical: #dc2626;
   --color-cyan: var(--accent-finops-cyan);
   --color-purple: #8b5cf6;
+}
+
+/* ==============================================================================
+   RESPONSIVE NEUMORPHIC SHADOWS (MOBILE-FIRST SCALING BREAKPOINTS)
+   Proportional reduction of blur and offset on smaller viewports
+   ============================================================================== */
+@media (max-width: 1280px) {
+  :root {
+    --neu-extruded: -5px -5px 12px var(--neu-light), 5px 5px 12px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+    --neu-extruded-sm: -3.5px -3.5px 8px var(--neu-light), 3.5px 3.5px 8px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+    --neu-inset: inset 3.5px 3.5px 8px var(--neu-dark), inset -3.5px -3.5px 8px var(--neu-light-subtle), inset 0 1px 2px rgba(0, 0, 0, 0.45);
+    --neu-pressed: inset 2.5px 2.5px 5px var(--neu-dark), inset -2.5px -2.5px 5px var(--neu-light-subtle);
+    --neu-elevated-hover: -7px -7px 16px var(--neu-light-elevated), 7px 7px 16px var(--neu-dark-elevated), inset 0 1px 0 var(--neu-rim-elevated);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --neu-extruded: -4px -4px 10px var(--neu-light), 4px 4px 10px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+    --neu-extruded-sm: -3px -3px 6px var(--neu-light), 3px 3px 6px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+    --neu-inset: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light-subtle), inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    --neu-pressed: inset 2px 2px 5px var(--neu-dark), inset -2px -2px 5px var(--neu-light-subtle);
+    --neu-elevated-hover: -5px -5px 12px var(--neu-light-elevated), 5px 5px 12px var(--neu-dark-elevated), inset 0 1px 0 var(--neu-rim-elevated);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --neu-extruded: -2px -2px 5px var(--neu-light), 2px 2px 5px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+    --neu-extruded-sm: -2px -2px 4px var(--neu-light), 2px 2px 4px var(--neu-dark), inset 0 1px 0 var(--neu-rim);
+    --neu-inset: inset 2px 2px 4px var(--neu-dark), inset -2px -2px 4px var(--neu-light-subtle), inset 0 1px 2px rgba(0, 0, 0, 0.4);
+    --neu-pressed: inset 2px 2px 4px var(--neu-dark), inset -2px -2px 4px var(--neu-light-subtle);
+    --neu-elevated-hover: -3px -3px 8px var(--neu-light-elevated), 3px 3px 8px var(--neu-dark-elevated), inset 0 1px 0 var(--neu-rim-elevated);
+  }
 }
