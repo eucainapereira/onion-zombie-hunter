@@ -53,13 +53,24 @@ textarea:focus-visible {
 }
 
 button:active,
+button[aria-pressed="true"],
+button.active,
 .preset-card:active,
+.preset-card[aria-pressed="true"],
+.preset-card.active,
 .tab-btn:active,
 .btn-primary:active,
 .btn-secondary:active,
-.btn-copy:active {
+.btn-copy:active,
+.btn-primary[aria-pressed="true"],
+.btn-secondary[aria-pressed="true"],
+.btn-copy[aria-pressed="true"],
+.btn-primary.active,
+.btn-secondary.active,
+.btn-copy.active {
   transform: scale(0.98);
   box-shadow: var(--neu-pressed) !important;
+  background-color: var(--bg-neu-pressed);
 }
 
 /* ==============================================================================
@@ -269,7 +280,7 @@ button:active,
 .preset-card {
   background-color: var(--bg-neu-base);
   border: var(--neu-border-hairline);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   text-align: left;
   cursor: pointer;
@@ -289,10 +300,12 @@ button:active,
   box-shadow: var(--neu-elevated-hover);
 }
 
-.preset-card.active {
+.preset-card.active,
+.preset-card[aria-pressed="true"] {
   border-color: var(--accent-waste-amber);
-  box-shadow: var(--neu-elevated-hover), 0 0 16px rgba(245, 158, 11, 0.35);
-  background: linear-gradient(145deg, #242933, #1c2028);
+  box-shadow: var(--neu-pressed), 0 0 14px rgba(245, 158, 11, 0.25);
+  background-color: var(--bg-neu-pressed);
+  transform: scale(0.99);
 }
 
 .preset-header {
@@ -360,7 +373,7 @@ button:active,
 .section-editor {
   background-color: var(--bg-neu-base);
   border: var(--neu-border-hairline);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   margin-bottom: var(--space-8);
   box-shadow: var(--neu-extruded);
@@ -520,7 +533,7 @@ button:active,
 .kpi-card {
   background-color: var(--bg-neu-base);
   border: var(--neu-border-hairline);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   position: relative;
   overflow: hidden;
@@ -664,7 +677,7 @@ button:active,
 .category-breakdown-card {
   background-color: var(--bg-neu-base);
   border: var(--neu-border-hairline);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   margin-bottom: var(--space-6);
   box-shadow: var(--neu-extruded);
@@ -734,7 +747,7 @@ button:active,
 .findings-container {
   background-color: var(--bg-neu-base);
   border: var(--neu-border-hairline);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   margin-bottom: var(--space-6);
   box-shadow: var(--neu-extruded);
@@ -759,6 +772,10 @@ button:active,
   -webkit-overflow-scrolling: touch;
   width: 100%;
   scrollbar-width: thin;
+  background-color: var(--bg-neu-sunken);
+  box-shadow: var(--neu-inset);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neu-border-dark);
 }
 
 .table-responsive::-webkit-scrollbar {
@@ -889,7 +906,7 @@ button:active,
 .remediation-container {
   background-color: var(--bg-neu-base);
   border: var(--neu-border-hairline);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-5);
   box-shadow: var(--neu-extruded);
 }
